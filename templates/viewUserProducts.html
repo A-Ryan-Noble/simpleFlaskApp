@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block listAllProductsPage %} current_page {% endblock %}
+{% block listAllProductsPage2 %} current_page {% endblock %}
+
+{% block title %}{{title}}{% endblock %}
+
+{% block body %}
+
+    <h3>  {{ messages[0] }} </h3>
+    <h4>  {{ messages[1] }} </h4>
+
+    <br>
+    <br>
+
+    <table class="table">
+        <tbody>
+        <tr>
+            <td class="item2">Name:</td><td class="item2">Image:</td>
+            <td class="item2">Price:</td><td class="item2">More:</td>
+        </tr>
+
+        <!-- For loop through each of the users -->
+        {% for product in products %}
+            <tr>
+                <td class="itemValue2" style="color: #9cace3">{{ product[0] }}</td>
+
+                <td class="itemValue2" style="color: #9cace3">
+                    <img src="/static/images/{{ product[2] }}" alt="Product's Image" width="150px" height="auto">
+                </td>
+
+                <td class="itemValue2" style="color: #9cace3">€{{product[1]}}</td>
+
+                <td class="itemValue2">
+                    <a class="link2" href="/viewOneProduct/{{product[0]}}">View</a>
+                </td>
+            </tr>
+
+        {% endfor %}
+
+        </tbody>
+    </table>
+
+    <div style="text-align: center">
+        <button onclick=" window.history.back();">Go Back</button>
+    </div>
+
+{% endblock %}

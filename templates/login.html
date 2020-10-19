@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+
+{% block loginPage %} current_page {% endblock %}
+
+{% block body %}
+
+	{% with messages = get_flashed_messages(category_filter=["noUser"]) %}
+		{% if messages %}
+        	<ul style="padding: 2rem">
+            	{% for message in messages %}
+            		<span id="errorMsg">
+            			{{ message }}
+            		</span>
+            	{% endfor %}
+        	</ul>
+        {% endif %}
+    {% endwith %}
+
+
+	<h2>Please Login below</h2>
+
+	<br>
+	<br>
+
+	<form action="" method="post" novalidate>
+
+	        {{ form.hidden_tag() }}
+
+	        {{ form.username.label }} {{ form.username (size=25,autofocus=true) }}
+
+		    {% for error in form.username.errors %}
+		    	<span id ="errorMsg"> *{{ error }}* </span>
+            {% endfor %}<br>
+            <br>
+            	
+            {{ form.password.label }} {{ form.password (size=25) }}
+
+		    {% for error in form.password.errors %}
+		    	<span id ="errorMsg"> *{{ error }}* </span>
+            {% endfor %}<br>
+            <br>
+
+	        {{ form.remember_me() }} {{ form.remember_me.label }}<br>
+
+			{{ form.submit() }}
+	</form>
+
+
+    <div style="text-align: center">
+        <button onclick=" window.history.back();">Go Back</button>
+    </div>
+
+{% endblock %}

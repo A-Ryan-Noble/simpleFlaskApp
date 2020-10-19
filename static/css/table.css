@@ -1,0 +1,53 @@
+.table{
+	background: #2d6886;
+	max-width: 75%;
+	margin-left: auto;
+  	margin-right: auto;
+}
+
+.table td{
+	color: white;
+	border: 2px solid firebrick;
+	text-align:center;
+}
+
+.table .item{
+	color: lightgreen;
+	font-weight:bold;
+	font-size:16px;
+}
+
+.table .itemValue{
+	font-size:14px;
+	text-align: center;
+	vertical-align: middle;
+}
+
+.table a.link{
+    color: white;
+    text-decoration: none;
+}
+
+.table a.link1{
+	color: #9cace3;
+    text-decoration: none;
+}
+
+.table .item2{
+	color: lightgreen;
+	font-size:22px;
+}
+
+.table .itemValue2{
+	font-size:18px;
+	text-align: center;
+	vertical-align: middle;
+}
+
+.table a.link2{
+	font-size:18px;
+	text-align: center;
+	vertical-align: middle;
+    color: white;
+    text-decoration: none;
+}

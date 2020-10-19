@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+
+{% block editUserPage %} current_page {% endblock %}
+
+{% block title %}{{title}}{% endblock %}
+
+{% block body %}
+
+	<h3> Details to be edited are as follows:</h3>
+	<br>
+	
+    <form action="" method="post">
+	    {{ form.hidden_tag() }}
+	
+		<div class="form">
+            <row>
+                <item>{{ form.nameToChange.label }}<item>
+                <space></space>
+				<item style="padding-right:5.5rem;">{{ form.nameToChange}}<item>
+            </row>
+	       		
+	       	<br>
+		    <br>
+
+			<row>
+			    <item>{{ form.newUsername.label }}<item>
+				<space></space>
+				<item>{{ form.newUsername(autofocus=true)}}<item>
+            </row>
+	       		
+	       	<br>
+		    <br>
+
+			<row>
+			    <item>{{ form.newPassword.label }}<item>
+				<space></space>
+				<item>{{ form.newPassword}}<item>
+            </row>
+		    			    	
+		    <br>
+		    <br>
+		    	
+		    <row>
+			    <item>{{ form.newRole.label }}<item>
+				<space2></space2>
+				<item style="padding-right:6rem;">{{ form.newRole}}<item>
+            </row>
+		    	
+		    <br>
+			<br>
+		 		
+			{{ form.submit() }}
+				
+			<br>
+			<br>
+        </div>
+    </form>
+	
+    <div style="text-align: center">
+        <button onclick=" window.history.back();">Go Back</button>
+    </div>
+
+{% endblock %}

@@ -1,0 +1,84 @@
+{% extends "base.html" %}
+
+{% block newProductPage %} current_page {% endblock %}
+{% block newProductPage2 %} current_page {% endblock %}
+
+{% block body %}
+
+	{% with messages = get_flashed_messages(category_filter=["ProductExistsMsg"]) %}
+    	{% if messages %}
+        	<ul style="padding: 2rem">
+            	{% for message in messages %}
+            		<span id="errorMsg">
+            			{{ message }}
+            		</span>
+            	{% endfor %}
+        	</ul>
+        {% endif %}
+	{% endwith %}
+
+	<h2>Please create a new Product below</h2>
+
+    <br>
+	<br>
+
+    <form action="" method="post" enctype="multipart/form-data">
+        {{ form.hidden_tag() }}
+
+		<div class="form">
+            <row>
+                <item>
+                    {{ form.productOwner.label }}
+                    <space3 style="width: 10rem"></space3>
+                    {{ form.productOwner}}
+                </item>
+            </row>
+
+	       	<br>
+		    <br>
+
+			<row>
+			    <item>
+                    {{ form.productName.label }}
+                    <space3 style="width: 5rem"></space3>
+                    {{ form.productName(autofocus=true)}}
+                </item>
+            </row>
+
+	       	<br>
+		    <br>
+
+			<row>
+			    <item style="padding-left: 3rem">
+                    {{ form.imageFile.label }}
+				    <space3 style="width: 2rem"></space3>
+                    {{ form.imageFile}}
+                </item>
+            </row>
+
+		    <br>
+		    <br>
+
+		    <row>
+                <item>
+                    {{ form.productPrice.label }}
+				    <space3 style="width: 5rem"></space3>
+                    {{ form.productPrice }}
+                </item>
+            </row>
+
+		    <br>
+			<br>
+
+			{{ form.update() }}
+
+			<br>
+			<br>
+        </div>
+    </form>
+
+    <div style="text-align: center">
+        <button onclick=" window.history.back();">Go Back</button>
+    </div>
+
+{% endblock %}

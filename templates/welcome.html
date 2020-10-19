@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+
+{% block welcomePage %} current_page {% endblock %}
+
+{% block title %} {{title}} {{ user[0] }} {% endblock %}
+
+{% block body %}
+
+	<h2>Welcome "{{user[0]}}"</h2>
+
+	<br>
+
+	You are signed in.<br>
+	Feel free to explore.
+
+	<br>
+	<hr>
+	<hr>
+
+	<br>
+	<h3> Your details are the following:</h3>
+	<br>
+	
+	<table class="table">
+		<tbody>
+
+        <tr>
+            <td class="item">Name:</td><td class="item">Password:</td>
+            <td class="item">Role:</td><td class="item">Action(s):</td>
+        </tr>
+		  
+		<tr>
+            <td class="itemValue">{{user[0]}}</td><td class="itemValue">{{user[1]}}</td>
+            <td class="itemValue">{{user[2]}}</td>
+            <td class="itemValue" style="color: #9cace3">
+                <a class="link" href="/editUser/{{user[0]}}">Edit</a>
+                <br>
+                <a class="link" href="/viewProducts/{{user[0]}}">Your Products</a>
+            </td>
+        </tr>
+
+        </tbody>
+	</table>
+
+    <br>
+    <h3>  {{ messages[0] }} </h3>
+    <h4>  {{ messages[1] }} </h4>
+    <br>
+
+    <table class="table">
+        <tbody>
+        <tr>
+            <td class="item2">Name:</td><td class="item2">Image:</td>
+            <td class="item2">Price:</td><td class="item2">Actions:</td>
+        </tr>
+
+        <!-- For loop through each of the users -->
+        {% for product in products %}
+            <tr>
+                <td class="itemValue2" style="color: #9cace3">{{ product[0] }}</td>
+
+                <td class="itemValue2" style="color: #9cace3">
+                    <img src="/static/images/{{ product[2] }}" alt="Product's Image" width="150px" height="auto">
+                </td>
+
+                <td class="itemValue2" style="color: #9cace3">€{{product[1]}}</td>
+
+                <td class="itemValue2" style="color: #9cace3">
+                    <a class="link" href="/editProduct/{{product[0]}}">Edit</a>
+                    <br>
+                    <a class="link" href="/deleteProduct/{{product[0]}}">Delete</a>
+                </td>
+            </tr>
+        {% endfor %}
+
+        </tbody>
+    </table>
+
+{% endblock %}

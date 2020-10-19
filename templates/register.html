@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+
+{% block registerPage %} current_page {% endblock %}
+
+{% block body %}
+
+	{% with messages = get_flashed_messages(category_filter=["userTakenMsg"]) %}
+    	{% if messages %}
+        	<ul style="padding: 2rem">
+            	{% for message in messages %}
+            		<span id="errorMsg">
+            			{{ message }}
+            		</span>
+            	{% endfor %}
+        	</ul>
+        {% endif %}
+	{% endwith %}
+
+	<h2>Please Register below</h2>
+
+	<br>
+
+	<form action="" method="post">
+        {{ form.hidden_tag() }}
+
+            {{ form.username.label }}<br>
+            {{ form.username(size=32,autofocus=true)}}<br>
+            <br>
+            
+            {{ form.password.label }}<br>
+            {{ form.password(size=32)}}<br>
+            <br>
+        	{% for error in form.password.errors %}
+        	    <span id="errorMsg">[{{ error }}]</span>
+            {% endfor %}
+            
+            {{ form.password2.label }}<br>
+            {{ form.password2(size=32) }}<br>
+            <br>
+        	{% for error in form.password2.errors %}
+        		{% if error == "Field must be equal to password." %}
+        			<span id="errorMsg">[The passwords don't match.]</span><br>
+        		{% endif %}
+            {% endfor %}<br>
+            
+        {{ form.submit() }}
+    </form>
+
+
+    <div style="text-align: center">
+        <button onclick=" window.history.back();">Go Back</button>
+    </div>
+
+{% endblock %}

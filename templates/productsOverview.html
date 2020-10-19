@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block productOverviewPage %} current_page {% endblock %}
+
+{% block body %}
+
+    <h2>Overview of the products</h2>
+	<br>
+
+    <table class="table">
+        <tbody>
+        <tr>
+            <td class="item2">Name of users:</td>
+            <td class="item2">User's Products:</td>
+            <td class="item2">Products' Prices:</td>
+            <td class="item2">Product Totals:</td>
+        </tr>
+
+        {% for item in items %}
+            <tr>
+                <td class="itemValue2" style="color: #9cace3">{{ item[0] }}</td>
+
+                <td class="itemValue" style="color: #9cace3">
+                    {% for listItem in item[1] %}
+                        {{ listItem }} <span style="margin-left: 0.5rem"> </span>
+                     {% endfor %}
+                </td>
+
+                <td class="itemValue" style="color: #9cace3">
+                    {% for listItem in item[2] %}
+                       €{{ listItem }}<span style="margin-left: 0.5rem"> </span>
+                     {% endfor %}
+                </td>
+
+                <td class="itemValue2" style="color: #9cace3">€{{ item[3] }}</td>
+            </tr>
+        {% endfor %}
+
+        </tbody>
+    </table>
+
+
+    <div style="text-align: center">
+        <button onclick=" window.history.back();">Go Back</button>
+    </div>
+
+{% endblock %}

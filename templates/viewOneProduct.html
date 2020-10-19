@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% block listAllProductsPage %} current_page {% endblock %}
+{% block listAllProductsPage2 %} current_page {% endblock %}
+
+{% block title %}{{title}}{% endblock %}
+
+{% block body %}
+
+	<h3> The Product details are shown in the following table:</h3>
+	
+	<br>
+	<br>
+	
+    <table class="table">
+        <tbody>
+        <tr>
+            <td class="item2">Name:</td><td class="item2">Image:</td>
+            <td class="item2">Price:</td><td class="item2">Owner:</td>
+
+             {% if session['username'] %}
+                <td class="item2">More:</td>
+            {% endif %}
+        </tr>
+
+        <tr>
+            <td class="itemValue2" style="color: #9cace3">{{ product[0] }}</td>
+            <td class="itemValue2" style="color: #9cace3">
+                <img src="/static/images/{{ product[2] }}" alt="Product's Image" width="150px" height="auto">
+            </td>
+            <td class="itemValue2" style="color: #9cace3">€{{product[1]}}</td>
+            <td class="itemValue2" style="color: #9cace3">{{product[3]}}</td>
+
+            {% if session['username'] %}
+                <td class="itemValue2" style="color: #9cace3">
+                    <a class="link" href="/editProduct/{{product[0]}}">Edit</a>
+                    <br>
+                    <a class="link" href="/deleteProduct/{{product[0]}}">Delete</a>
+                </td>
+            {% endif %}
+        </tr>
+        </tbody>
+    </table>
+
+    <div style="text-align: center">
+        <button onclick=" window.history.back();">Go Back</button>
+    </div>
+
+{% endblock %}

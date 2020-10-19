@@ -1,0 +1,103 @@
+<!doctype html>
+<html>
+
+    <head>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+        <link rel="stylesheet" type="text/css" href='/static/css/style.css'>
+        <link rel="stylesheet" type="text/css" href='/static/css/nav.css'>
+        <link rel="stylesheet" type="text/css" href='/static/css/table.css'>
+
+        <title>
+            {% block title %} {{title}} {% endblock %}
+        </title>
+    </head>
+
+    <body>
+
+        <nav>
+            <ul>
+                <!--  Signed in User -->
+                {% if session['username'] %}
+                    <li><a href="/" class="{% block welcomePage %}{% endblock %}"> Welcome</a></li>
+
+                    <li class="dropdown">
+                        <a href="" id="dropbtn">Products</a>
+
+                        <div class="dropdown-content">
+                            <a href="/listProducts" class="{% block listAllProductsPage %}{% endblock %}">View</a>
+
+                            {% if session['username'] %}
+                                <a href="/newProduct" class="{% block newProductPage %}{% endblock %}">Create Product</a>
+                            {% endif %}
+
+                            {% if session['access'] == 1 %}
+                                <a href="/viewProducts/productsOverview" class="{% block productOverviewPage %}{% endblock %}">Overview</a>
+                            {% endif %}
+                        </div>
+                    </li>
+
+                    <li><a href="/register" class="{% block registerPage %}{% endblock %}"> Register</a></li>
+
+                <!-- Non-Signed in User -->
+                {% else %}
+                    <li><a href="/" class="{% block homePage %}{% endblock %}"> Home</a></li>
+
+                    <li class="dropdown">
+                        <a href="" id="dropbtn">Products</a>
+
+                        <div class="dropdown-content">
+                            <a href="/listProducts" class="{% block listAllProductsPage2 %}{% endblock %}">View</a>
+
+                            {% if session['username'] %}
+                                <a href="/newProduct" class="{% block newProductPage2 %}{% endblock %}">Create Product</a>
+                            {% endif %}
+
+                        </div>
+                    </li>
+
+                    <li><a href="/login" class="{% block loginPage %}{% endblock %}"> Login</a></li>
+                {% endif %}
+
+            </ul>
+        </nav>
+
+        {% if session['username'] %}
+            <nav>
+                <ul>
+
+                    <li><a href="/logout" class="{% block logoutPage %}{% endblock %}">Sign out</a></li>
+
+                   <li class="dropdown">
+                        <a href="" id="dropbtn">Users</a>
+
+                        <div class="dropdown-content">
+                            <a href="/listUsers" class="{% block listAllUsersPage %}{% endblock %}">View</a>
+
+                            {% if session['username'] %}
+                                <a href="/" class="{% block loggedInUserViewPage %}{% endblock %}">My info</a>
+                                <a href="/register" class="{% block createUserPage %}{% endblock %}">Create User</a>
+                            {% endif %}
+
+                        </div>
+                    </li>
+
+                    <!--  Admin User -->
+                    {% if session['access'] == True %}
+                        <li><a href="/resetDatabase"> Reset DB</a></li>
+                    {% endif %}
+                </ul>
+            </nav>
+        {% endif %}
+
+        <br>
+
+        <div id="page">
+            {% block body %}{% endblock %}
+        </div>
+
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+    </body>
+</html>

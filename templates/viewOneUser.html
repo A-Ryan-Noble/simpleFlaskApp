@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block listAllUsersPage %} current_page {% endblock %}
+
+{% block title %}{{title}}{% endblock %}
+
+{% block body %}
+
+	<h3> User details are shown in the following table:</h3>
+	
+	<br>
+	<br>
+	
+	<table class="table">
+		<tbody>
+		
+		  <tr>
+		    <td class="item">Name:</td><td class="item">Password:</td>
+		    
+		    {% if session['access'] == True %}
+		    	<td class="item">Role:</td>
+		    {% endif %}
+		    
+		    <td class="item">Action(s):</td>
+		  </tr>
+		  
+		<tr>
+			<td class="itemValue">{{user[0]}}</td><td class="itemValue">{{user[1]}}</td>
+		  	
+		  	{% if session['access'] == True %}
+		  		<td class="itemValue">{{user[2]}}</td>
+			 {% endif %}
+
+	  		<td class="itemValue" style="color: #9cace3">
+				<a class="link" href="/editUser/{{user[0]}}">Edit</a>
+                <span style="margin-right: 5px"></span>
+                <a class="link" href="/deleteUser/{{user[0]}}">Delete</a>
+			 </td>
+	  	</tr> 
+		  
+		</tbody>
+	</table>
+
+    <div style="text-align: center">
+        <button onclick=" window.history.back();">Go Back</button>
+    </div>
+
+{% endblock %}
